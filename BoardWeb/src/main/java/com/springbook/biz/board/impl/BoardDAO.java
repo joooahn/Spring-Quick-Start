@@ -23,7 +23,7 @@ public class BoardDAO {
 	//SQL 명령어들
 	private final String BOARD_INSERT = "insert into board(seq, title, writer, content) "
 			+ "values ((select nvl(max(seq), 0)+1 from board), ?, ?, ?)";
-	private final String BOARD_UPDATE = "update board set title=?, writer=?, content=? where seq=?";
+	private final String BOARD_UPDATE = "update board set title=?, writer=?, content=?, regdate=? where seq=?";
 	private final String BOARD_DELETE = "delete board where seq=?";
 	private final String BOARD_GET = "select * from board where seq=?";
 	private final String BOARD_LIST = "select * from board order by seq desc";
@@ -36,9 +36,10 @@ public class BoardDAO {
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(BOARD_INSERT);
-			stmt.setString(1, vo.getTitle());
-			stmt.setString(2, vo.getWriter());
-			stmt.setString(3, vo.getContent());
+			stmt.setInt(1,  vo.getSeq());
+			stmt.setString(2, vo.getTitle());
+			stmt.setString(3, vo.getWriter());
+			stmt.setString(4, vo.getContent());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -58,7 +59,8 @@ public class BoardDAO {
 			stmt.setString(1, vo.getTitle());
 			stmt.setString(2, vo.getWriter());
 			stmt.setString(3, vo.getContent());
-			stmt.setInt(4, vo.getSeq());
+			stmt.setDate(4, vo.getRegDate());
+			stmt.setInt(5, vo.getSeq());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
