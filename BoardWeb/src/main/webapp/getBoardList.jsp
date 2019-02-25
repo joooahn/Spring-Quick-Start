@@ -20,7 +20,7 @@
 				<tr>
 					<td align="right">
 						<select name="searchCondition">
-							<c:forEach items="${conditionMap}" var="option">
+							<c:forEach items="${conditionMap }" var="option">
 								<option value="${option.value }">${option.key }
 							</c:forEach>
 						</select>
