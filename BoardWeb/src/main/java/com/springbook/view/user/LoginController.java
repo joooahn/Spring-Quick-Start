@@ -2,6 +2,7 @@ package com.springbook.view.user;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -12,7 +13,7 @@ import com.springbook.biz.user.impl.UserDAO;
 public class LoginController{
 
 	@RequestMapping(value="/login.do", method=RequestMethod.GET)
-	public String loginView(UserVO vo, UserDAO userDAO) {
+	public String loginView(@ModelAttribute("user") UserVO vo, UserDAO userDAO) {
 		System.out.println("로그인 화면으로 이동");
 	
 		vo.setId("test");
