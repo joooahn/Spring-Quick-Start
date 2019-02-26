@@ -24,7 +24,7 @@ public class BoardDAOSpring {
 	//SQL 명령어들
 	private final String BOARD_INSERT = "insert into board(seq, title, writer, content) "
 			+ "values ((select nvl(max(seq), 0)+1 from board), ?, ?, ?)";
-	private final String BOARD_UPDATE = "update board set title=?, writer=?, content=?, regdate=? where seq=?";
+	private final String BOARD_UPDATE = "update board set title=?, content=? where seq=?";
 	private final String BOARD_DELETE = "delete board where seq=?";
 	private final String BOARD_GET = "select * from board where seq=?";
 	private final String BOARD_LIST_T =
@@ -42,7 +42,7 @@ public class BoardDAOSpring {
 	//글 수정
 	public void updateBoard(BoardVO vo) {
 		System.out.println("===> Spring JDBC로 updateBoard() 기능 처리");
-		jdbcTemplate.update(BOARD_UPDATE, vo.getTitle(), vo.getWriter(), vo.getContent(), vo.getRegDate(), vo.getSeq());
+		jdbcTemplate.update(BOARD_UPDATE, vo.getTitle(), vo.getContent(), vo.getSeq());
 	}
 	
 	//글 삭제
