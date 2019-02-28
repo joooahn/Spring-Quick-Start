@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Main Page</title>
 </head>
+<!--  test -->
 <body>
 	<center>
 		<h1>게시판 프로그램</h1>
